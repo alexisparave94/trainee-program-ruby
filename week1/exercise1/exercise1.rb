@@ -1,5 +1,5 @@
 def decode_string(str)
-  abc = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+  abc = (97..122).map(&:chr)
   arr = str.split('').reverse
   num = 0
   arr.each.with_index do |e, i|
@@ -21,4 +21,4 @@ def generate_secuence(init_str, fin_str)
   puts secuence.join(',')
 end
 
-generate_secuence("zw", "aad")
+generate_secuence("df", "aad")
