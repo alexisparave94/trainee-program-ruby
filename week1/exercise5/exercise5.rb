@@ -4,8 +4,11 @@ require 'csv'
 
 # Generarte a validation for negative values in a datetime
 def valid_negative_values?(str_date)
-  date, time = str_date.split('')
+  date, time = str_date.split(' ')
+  # p date
+  # p time
   arr_date = date.split('/') + time.split(':')
+  # p arr_date
   arr_date.all? { |item| item.to_i >= 0 }
 end
 
@@ -27,7 +30,7 @@ csv_read.each.with_index do |date, index|
     valid_date = DateTime.parse(date_time).to_s
     # If no exeption is detected the date parsed is save in csv_valid_dates
     csv_valid_dates << [valid_date]
-  
+
   # If any exeption of type Date::error occurs, rescue the error
   rescue Date::Error => error
     # Save the invalid date and the line number where is found in csv_invalid_dates
