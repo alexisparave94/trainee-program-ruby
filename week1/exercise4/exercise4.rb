@@ -4,11 +4,18 @@ str = IO.read('strings.txt')
 str = str[16..]
 
 # This chunk of code clear all extra spaces and correct some specific cases
-str = str.gsub(/[^\.\n]\n/) { |m| "#{m[0]} " }
+# str = str.gsub(/[^\.\n]\n/) { |m| "#{m[0]} " }
+#          .gsub(/\.\n[^\n]/) { |m| "#{m[0]} #{m[2]}" }
+#          .gsub(/ +/, ' ')
+#          .gsub(/ +[\.,]/) { |m| m[1] }
+#          .gsub(/\.\./) { |m| "#{m[0]} " }
+str = str.gsub(/\.[\s]+\z/) { |m| m[0] }
+         .gsub(/^[\t\r ]+\S/) { |m| m[-1] }
+         .gsub(/[^\.\n]\n/) { |m| "#{m[0]} " }
          .gsub(/\.\n[^\n]/) { |m| "#{m[0]} #{m[2]}" }
-         .gsub(/ +/, ' ')
+         .gsub(/[\t\r ]+/, ' ')
          .gsub(/ +[\.,]/) { |m| m[1] }
-         .gsub(/\.\./) { |m| "#{m[0]} " }
+         .gsub(/(\w)(\.)(\.)([\w ])/, '\1\3 \4')
 
 # Write the corrected string in the file without_extra_spaces.txt
 File.open('without_extra_spaces.txt', 'w') do |file|
