@@ -43,4 +43,10 @@ def generate_series2(init_str, fin_str)
   p series.join(', ')
 end
 
+## Solution 3
+def generate_series3(init_str, fin_str)
+  p (('a'..fin_str).to_a - ('a'...init_str).to_a).join(', ')
+end
+
 generate_series2("xe", "aad")
+generate_series3("xe", "aad")
