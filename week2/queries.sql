@@ -23,3 +23,6 @@ WHERE product_id = X;
 SELECT SUM(order_lines.total) AS "Total of sales" FROM orders
 INNER JOIN order_lines ON orders.id = order_lines.order_id
 WHERE product_id = X AND status = 'completed';
+
+-- UPDATE A PRODUCT PRICE BY 1.5 TIMES ITS VALUE
+UPDATE products SET price = price * 1.5 WHERE id = X;
