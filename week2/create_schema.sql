@@ -8,4 +8,14 @@ CREATE TABLE customers (
   phone varchar NOT NULL
 );
 
+DROP TABLE IF EXISTS products;
+CREATE TABLE products (
+  id serial PRIMARY KEY,
+  sku varchar UNIQUE NOT NULL,
+  name varchar UNIQUE NOT NULL,
+  description varchar NOT NULL,
+  price numeric CHECK (price > 0),
+  stock integer DEFAULT 0 CHECK (stock >= 0)
+);
+
 COMMIT;
