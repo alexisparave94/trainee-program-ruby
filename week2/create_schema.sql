@@ -39,3 +39,20 @@ CREATE TABLE order_lines (
 );
 
 COMMIT;
+
+
+BEGIN;
+CREATE OR REPLACE function SP_Update_total() returns Trigger
+AS
+$$
+  BEGIN
+    UPDATE orders SET total = total + new.total WHERE id = new.order_id;
+    return new;
+  END
+$$
+LANGUAGE plpgsql;
+
+CREATE Trigger TR_Insert_order_line AFTER INSERT ON order_lines
+for each row
+EXECUTE PROCEDURE SP_Update_total();
+COMMIT;
