@@ -1,2 +1,5 @@
 -- SELECT ALL PRODUCTS
 SELECT * FROM products;
+
+-- SELECT ALL CLIENTS
+SELECT * FROM customers;
