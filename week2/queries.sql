@@ -18,3 +18,8 @@ GROUP BY sku, name;
 SELECT order_id, date, status, product_id FROM orders 
 INNER JOIN order_lines ON orders.id = order_lines.order_id
 WHERE product_id = X;
+
+-- SELECT THE TOTAL OF SALES OF X PRODUCT
+SELECT SUM(order_lines.total) AS "Total of sales" FROM orders
+INNER JOIN order_lines ON orders.id = order_lines.order_id
+WHERE product_id = X AND status = 'completed';
