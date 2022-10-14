@@ -18,4 +18,13 @@ CREATE TABLE products (
   stock integer DEFAULT 0 CHECK (stock >= 0)
 );
 
+DROP TABLE IF EXISTS orders;
+CREATE TABLE orders (
+  id serial PRIMARY KEY,
+  date date,
+  total numeric DEFAULT 0,
+  status varchar DEFAULT 'pending',
+  customer_id INTEGER NOT NULL REFERENCES customers(id)
+);
+
 COMMIT;
