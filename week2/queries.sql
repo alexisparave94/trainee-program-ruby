@@ -3,3 +3,6 @@ SELECT * FROM products;
 
 -- SELECT ALL CLIENTS
 SELECT * FROM customers;
+
+-- SELECT ALL ORDER LINES FROM AN ORDER
+SELECT * FROM order_lines WHERE order_id = X;
