@@ -13,3 +13,8 @@ INNER JOIN order_lines ON orders.id = order_lines.order_id
 INNER JOIN products ON products.id = order_lines.product_id
 WHERE status = 'completed'
 GROUP BY sku, name;
+
+-- SELECT ALL ORDERS A PRODUCT HAS
+SELECT order_id, date, status, product_id FROM orders 
+INNER JOIN order_lines ON orders.id = order_lines.order_id
+WHERE product_id = X;
