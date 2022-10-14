@@ -1,0 +1,2 @@
+-- SELECT ALL PRODUCTS
+SELECT * FROM products;
