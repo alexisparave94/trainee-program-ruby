@@ -65,5 +65,5 @@ INNER JOIN products ON products.id = order_lines.product_id
 WHERE status = 'completed'
 GROUP BY name ORDER BY total_quantity DESC LIMIT 1;
 
--- DELETE AN SPECIFIC ORDER
-DELETE FROM orders WHERE order_id = X;
+-- DELETE A SPECIFIC ORDER
+DELETE FROM orders WHERE id = X;
