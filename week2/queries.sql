@@ -40,3 +40,11 @@ SELECT * FROM orders WHERE date BETWEEN 'FIRST_DATE' AND 'SECOND_DATE';
 
 -- SELECT ALL PRODUCTS WITH PRICE GREATER THAN 4.5
 SELECT * FROM products WHERE price > 4.5;
+
+-- SELECT ALL THE PRODUCTS WITH THE QUANTITY A CUSTOMER HAS BOUGHT
+SELECT product_id, products.name, SUM(quantity) AS "Total quantity" FROM customers
+INNER JOIN orders ON customers.id = orders.customer_id
+INNER JOIN order_lines ON orders.id = order_lines.order_id
+INNER JOIN products ON products.id = order_lines.product_id
+WHERE customer_id = X AND status = 'completed'
+GROUP BY product_id, name;
