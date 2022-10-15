@@ -1,8 +1,8 @@
 class Vehicle
-  CARS_BRANDS = ['Toyota', 'Kia', 'Hyundai', 'Wolkswagen', 'Suzuki', 'Nissan', 'Mazda']
-  TRUCK_BRANDS = ['Scania', 'Volvo', 'Foton', 'Izusu']
-  VEHICLE_COLORS = ['red', 'blue', 'green', 'black', 'white', 'gray']
-  TYPES = ['car', 'truck']
+  CARS_BRANDS = %w[Toyota Kia Hyundai Wolkswagen Suzuki Nissan Mazda].freeze
+  TRUCK_BRANDS = %w[Scania Volvo Foton Izusu].freeze
+  VEHICLE_COLORS = %w[red blue green black white gray].freeze
+  TYPES = %w[car truck].freeze
 
   attr_accessor :wheels_number, :color, :brand, :price
 
