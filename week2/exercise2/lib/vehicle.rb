@@ -8,3 +8,9 @@ class Vehicle
     @price = price
   end
 end
+
+class Car < Vehicle
+  def initialize(color, brand, price)
+    super(4, color, brand, price)
+  end
+end
