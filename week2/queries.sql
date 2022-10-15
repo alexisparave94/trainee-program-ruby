@@ -34,3 +34,6 @@ INNER JOIN order_lines ON orders.id = order_lines.order_id
 INNER JOIN products ON products.id = order_lines.product_id
 WHERE product_id = X AND status = 'completed'
 GROUP BY first_name, last_name, product_id, products.name;
+
+-- SELECT ALL ORDERS BETWEEN DATES X AND Y (DATE = 'YYYY-MM-DD')
+SELECT * FROM orders WHERE date BETWEEN 'FIRST_DATE' AND 'SECOND_DATE';
