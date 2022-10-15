@@ -37,3 +37,6 @@ GROUP BY first_name, last_name, product_id, products.name;
 
 -- SELECT ALL ORDERS BETWEEN DATES X AND Y (DATE = 'YYYY-MM-DD')
 SELECT * FROM orders WHERE date BETWEEN 'FIRST_DATE' AND 'SECOND_DATE';
+
+-- SELECT ALL PRODUCTS WITH PRICE GREATER THAN 4.5
+SELECT * FROM products WHERE price > 4.5;
