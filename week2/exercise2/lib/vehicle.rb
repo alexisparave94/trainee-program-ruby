@@ -14,3 +14,9 @@ class Car < Vehicle
     super(4, color, brand, price)
   end
 end
+
+class Truck < Vehicle
+  def initialize(wheels_number, color, brand, price)
+    super(wheels_number, color, brand, price)
+  end
+end
