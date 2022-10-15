@@ -48,3 +48,12 @@ INNER JOIN order_lines ON orders.id = order_lines.order_id
 INNER JOIN products ON products.id = order_lines.product_id
 WHERE customer_id = X AND status = 'completed'
 GROUP BY product_id, name;
+
+-- SELECT THE TOTAL AMOUNT OF PRODUCTS A X CUSTOMER BOUGHT BETWEEN 2 DATES
+SELECT SUM(quantity) AS "Total amount of products" FROM customers
+INNER JOIN orders ON customers.id = orders.customer_id
+INNER JOIN order_lines ON orders.id = order_lines.order_id
+INNER JOIN products ON products.id = order_lines.product_id
+WHERE customer_id = 1 AND status = 'completed' 
+AND date BETWEEN '2022-01-26' AND '2022-10-11';
+-- GROUP BY name;
