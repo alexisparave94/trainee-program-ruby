@@ -30,7 +30,7 @@ CREATE TABLE orders (
 );
 
 CREATE TABLE order_lines (
-  order_id integer NOT NULL REFERENCES orders(id),
+  order_id integer NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
   product_id integer NOT NULL REFERENCES products(id),
   quantity integer CHECK (quantity > 0),
   price numeric CHECK (price > 0),
