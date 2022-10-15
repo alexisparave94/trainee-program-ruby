@@ -1,4 +1,9 @@
 class Vehicle
+  CARS_BRANDS = ['Toyota', 'Kia', 'Hyundai', 'Wolkswagen', 'Suzuki', 'Nissan', 'Mazda']
+  TRUCK_BRANDS = ['Scania', 'Volvo', 'Foton', 'Izusu']
+  VEHICLE_COLORS = ['red', 'blue', 'green', 'black', 'white', 'gray']
+  TYPES = ['car', 'truck']
+
   attr_accessor :wheels_number, :color, :brand, :price
 
   def initialize(wheels_number, color, brand, price)
@@ -6,6 +11,25 @@ class Vehicle
     @color = color
     @brand = brand
     @price = price
+  end
+
+  def self.create_5_vehicles
+    random_vehicles = []
+    5.times do
+      type = TYPES.sample
+      color = VEHICLE_COLORS.sample
+      if type == 'car'
+        brand = CARS_BRANDS.sample
+        price = (((rand * 90).round + 10) * 1000).to_f
+        random_vehicles.push(Car.new(color, brand, price))
+      else
+        wheels_number = (rand * 10).round + 6
+        brand = TRUCK_BRANDS.sample
+        price = (((rand * 500).round + 100) * 1000).to_f
+        random_vehicles.push(Truck.new(wheels_number, color, brand, price))
+      end
+    end
+    random_vehicles
   end
 end
 
