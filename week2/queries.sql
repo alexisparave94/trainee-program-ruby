@@ -57,3 +57,10 @@ INNER JOIN products ON products.id = order_lines.product_id
 WHERE customer_id = 1 AND status = 'completed' 
 AND date BETWEEN '2022-01-26' AND '2022-10-11';
 -- GROUP BY name;
+
+-- SELECT WHAT IS THE MOST PURCHASED PRODUCT
+SELECT name, SUM(quantity) AS total_quantity FROM orders 
+INNER JOIN order_lines ON orders.id = order_lines.order_id
+INNER JOIN products ON products.id = order_lines.product_id
+WHERE status = 'completed'
+GROUP BY name ORDER BY total_quantity DESC LIMIT 1;
