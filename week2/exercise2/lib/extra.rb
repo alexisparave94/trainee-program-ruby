@@ -7,6 +7,12 @@ class Extra
     @vehicle = vehicle
   end
 
+  def list_vehicle_extras
+    extras_with_prices.each do |extra, price|
+      puts "\t#{extra}: ($#{price})\n\n"
+    end
+  end
+
   def self.get_prices_extras
     PRICES_EXTRAS
   end
