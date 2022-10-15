@@ -13,6 +13,10 @@ class Extra
     end
   end
 
+  def import_extras
+    vehicle.extras = extras_with_prices
+  end
+
   def self.get_prices_extras
     PRICES_EXTRAS
   end
