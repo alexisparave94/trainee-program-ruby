@@ -24,4 +24,28 @@ class Store
   def remove_vehicle(id)
     vehicles.reject! { |store_vehicle| store_vehicle['id'] == id }
   end
+
+  def show_features(vehicle, extras)
+    extra_features = Extra.new(vehicle, extras)
+    puts "\tFeatures\n\n"
+    puts "\tColor: #{vehicle.color}\n\n"
+    puts "\tBrand: #{vehicle.brand}\n\n"
+    puts "\tPrice: $#{vehicle.price}\n\n"
+    puts '-------------------------------------------------'
+    puts "Extras:\n"
+    extra_features.list_vehicle_extras
+    total = calculate_total(vehicle.price, extra_features)
+    puts '-------------------------------------------------'
+    puts "\tTotal: $#{total}\n\n"
+  end
+
+  private
+
+  def calculate_total(vehicle_price, extra_features)
+    total = vehicle_price
+    extra_features.extras_with_prices.each do |_extra, price|
+      total += price
+    end
+    total
+  end
 end
