@@ -20,7 +20,7 @@ class App
       option = gets.chomp.to_i
       case option
       when 1 then puts list_vehicles
-      when 2 then puts 'add_vehicle'
+      when 2 then puts add_vehicle
       when 3 then puts 'remove vehicle'
       when 4 then puts 'generate quote'
       end
@@ -42,6 +42,37 @@ class App
     store.list_vehicles
     puts ''
   end
+
+  def add_vehicle
+    puts "\nWhat kind of vehicle you want to add?"
+    puts '1. Car | 2. Truck'
+    print 'Enter the number of the option > '
+    type = gets.chomp.to_i
+    type = Vehicle.get_types[type - 1]
+    puts "You are going to add a #{type}"
+    puts 'Enter features: '
+    print 'Brand: '
+    brand = gets.chomp
+    print 'Color: '
+    color = gets.chomp
+    print 'Price: '
+    price = gets.chomp.to_f
+    begin
+      if type == 'car'
+        vehicle = Car.new(color, brand, price)
+      else
+        print 'Wheels number: '
+        wheels_number = gets.chomp.to_i
+        vehicle = Truck.new(wheels_number, color, brand, price)
+      end
+    rescue ArgumentError => err
+      puts err
+      retry
+    end
+    store.add_vehicle(vehicle)
+    puts "\nVehicle add to store\n"
+  end
+  
 end
 
 app = App.new

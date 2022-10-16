@@ -33,6 +33,10 @@ class Vehicle
     end
     random_vehicles
   end
+
+  def self.get_types
+    TYPES
+  end
 end
 
 class Car < Vehicle
