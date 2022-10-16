@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class Vehicle
   CARS_BRANDS = %w[Toyota Kia Hyundai Wolkswagen Suzuki Nissan Mazda].freeze
   TRUCK_BRANDS = %w[Scania Volvo Foton Izusu].freeze
