@@ -19,7 +19,7 @@ class App
       print 'Enter the number of the option > '
       option = gets.chomp.to_i
       case option
-      when 1 then puts 'list vehicle'
+      when 1 then puts list_vehicles
       when 2 then puts 'add_vehicle'
       when 3 then puts 'remove vehicle'
       when 4 then puts 'generate quote'
@@ -35,6 +35,12 @@ class App
     Vehicle.create_5_vehicles.each do |vehicle|
       store.add_vehicle(vehicle)
     end
+  end
+
+  def list_vehicles
+    puts "\nVehicles of the store: "
+    store.list_vehicles
+    puts ''
   end
 end
 
