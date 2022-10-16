@@ -21,7 +21,7 @@ class App
       case option
       when 1 then puts list_vehicles
       when 2 then puts add_vehicle
-      when 3 then puts 'remove vehicle'
+      when 3 then puts remove_vehicle
       when 4 then puts 'generate quote'
       end
     end
@@ -72,7 +72,13 @@ class App
     store.add_vehicle(vehicle)
     puts "\nVehicle add to store\n"
   end
-  
+
+  def remove_vehicle
+    print "Enter the vehicle's ID > "
+    id = gets.chomp
+    store.remove_vehicle(id)
+    print "\nVehicle remove from store\n"
+  end
 end
 
 app = App.new
