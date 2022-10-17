@@ -36,7 +36,7 @@ class Store
     extra_features.list_vehicle_extras
     total = calculate_total(vehicle.price, extra_features)
     puts '-------------------------------------------------'
-    puts "\tTotal: $#{total}\n\n"
+    puts "\tTotal: $#{total}\n"
   end
 
   private

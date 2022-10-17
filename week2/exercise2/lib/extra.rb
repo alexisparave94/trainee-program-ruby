@@ -1,5 +1,7 @@
 class Extra
   PRICES_EXTRAS = { 'Radio' => 500.0, 'AC' => 1000.0, 'Sunroof' => 2000.0, 'Leather Seats' => 1000.0, 'Power Windows' => 1000.0 }.freeze
+  EXTRAS = ['Radio', 'AC', 'Sunroof', 'Leather Seats', 'Power Windows'].freeze
+
   attr_reader :extras_with_prices, :vehicle
 
   def initialize(vehicle, extras = [])
@@ -19,6 +21,10 @@ class Extra
 
   def self.get_prices_extras
     PRICES_EXTRAS
+  end
+
+  def self.get_extras
+    EXTRAS
   end
 
   private

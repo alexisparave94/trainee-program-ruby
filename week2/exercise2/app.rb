@@ -22,7 +22,7 @@ class App
       when 1 then puts list_vehicles
       when 2 then puts add_vehicle
       when 3 then puts remove_vehicle
-      when 4 then puts 'generate quote'
+      when 4 then puts generate_quote
       end
     end
     puts 'Thanks for use app'
@@ -78,6 +78,35 @@ class App
     id = gets.chomp
     store.remove_vehicle(id)
     print "\nVehicle remove from store\n"
+  end
+
+  def generate_quote
+    puts "If you know the vehicle's ID you want quote press Enter"
+    print 'Or write back and list vehicles to get the ID > '
+    back = gets.chomp
+    return if back == 'back'
+
+    print "Enter the vehicle's ID > "
+    id = gets.chomp
+    selected_store_vehicle = store.vehicles.select { |store_vehicle| store_vehicle['id'] == id }[0]
+    obj_vehicle = selected_store_vehicle['obj_vehicle']
+    print 'Do you want to add extras?(y/n) > '
+    add_extras = gets.chomp
+    extras = []
+    if add_extras == 'y'
+      puts 'Extras:'
+      i = 0
+      Extra.get_prices_extras.each do |extra, price|
+        i += 1
+        puts "#{i}. #{extra}: $#{price}"
+      end
+      print 'Enter numbers of the extras > '
+      arr_num = gets.chomp.split(' ').map(&:to_i)
+      extras = arr_num.map { |num| Extra.get_extras[num - 1] }
+    end
+    puts "Details:\n\n"
+    puts "\tQuote for car: #{selected_store_vehicle['id']}\n\n"
+    store.show_features(obj_vehicle, extras)
   end
 end
 
