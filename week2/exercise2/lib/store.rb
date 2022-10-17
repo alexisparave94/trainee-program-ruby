@@ -1,5 +1,7 @@
 # Import library securerandom to generate random ids
 require 'securerandom'
+# Import library to show vehicle in a table
+require "terminal-table"
 
 # Class Extra to represent a store of vehicles
 class Store
@@ -12,12 +14,14 @@ class Store
 
   # Method to list all the vehicle that has the store
   def list_vehicles
-    vehicles.each.with_index do |store_vehicle, index|
-      print "#{index + 1}. ID: #{store_vehicle['id']}, "
-      print "#{store_vehicle['obj_vehicle'].brand} #{store_vehicle['obj_vehicle'].color}, "
-      print "price: $#{store_vehicle['obj_vehicle'].price}, "
-      print "type: #{store_vehicle['type']}\n"
+    table = Terminal::Table.new
+    table.title = "Vehicles"
+    table.headings = ["ID", "Brand", "Color", "Price", "Type"]
+    table.rows = vehicles.map do |store_vehicle|
+      obj_vehicle = store_vehicle['obj_vehicle']
+      [store_vehicle['id'], obj_vehicle.brand, obj_vehicle.color, obj_vehicle.price, store_vehicle['type']]
     end
+    table
   end
 
   # Method to add a new vehicle to the store

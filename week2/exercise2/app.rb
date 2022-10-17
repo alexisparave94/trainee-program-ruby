@@ -42,8 +42,7 @@ class App
   # Method to show all vehicles of the store
   def list_vehicles
     puts "\nVehicles of the store: "
-    store.list_vehicles
-    puts ''
+    puts store.list_vehicles
   end
 
   # Method to set the features of the new vehicle and add to the store
