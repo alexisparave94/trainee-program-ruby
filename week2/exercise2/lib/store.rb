@@ -42,10 +42,6 @@ class Store
   private
 
   def calculate_total(vehicle_price, extra_features)
-    total = vehicle_price
-    extra_features.extras_with_prices.each do |_extra, price|
-      total += price
-    end
-    total
+    vehicle_price + extra_features.extras_with_prices.reduce(0) { |memo, (_key, val)| memo + val }
   end
 end

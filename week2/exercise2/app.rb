@@ -1,8 +1,10 @@
 require_relative 'lib/store'
 require_relative 'lib/vehicle'
 require_relative 'lib/extra'
+require_relative 'lib/helpers/helper_app'
 
 class App
+  include HelperApp
   attr_accessor :store
 
   def start
@@ -10,14 +12,8 @@ class App
     puts 'Welcome to Store App'
     option = ''
     until option == 5
-      puts 'Choose the option you want to do'
-      puts '1. List vehicles'
-      puts '2. Add a vehicle'
-      puts '3. Remove a vehicle'
-      puts '4. Generate quote'
-      puts '5. Exit'
-      print 'Enter the number of the option > '
-      option = gets.chomp.to_i
+      print_main_menu
+      option = get_input('Enter the number of the option > ').to_i
       case option
       when 1 then puts list_vehicles
       when 2 then puts add_vehicle
@@ -44,25 +40,18 @@ class App
   end
 
   def add_vehicle
-    puts "\nWhat kind of vehicle you want to add?"
-    puts '1. Car | 2. Truck'
-    print 'Enter the number of the option > '
-    type = gets.chomp.to_i
-    type = Vehicle.get_types[type - 1]
+    type_number = select_vehicle_type
+    type = Vehicle::TYPES[type_number - 1]
     puts "You are going to add a #{type}"
     puts 'Enter features: '
-    print 'Brand: '
-    brand = gets.chomp
-    print 'Color: '
-    color = gets.chomp
-    print 'Price: '
-    price = gets.chomp.to_f
+    brand = get_input('Brand: ')
+    color = get_input('Color: ')
+    price = get_input('Price: ').to_f
     begin
       if type == 'car'
         vehicle = Car.new(color, brand, price)
       else
-        print 'Wheels number: '
-        wheels_number = gets.chomp.to_i
+        wheels_number = get_input('Wheels Number: ').to_i
         vehicle = Truck.new(wheels_number, color, brand, price)
       end
     rescue ArgumentError => err
@@ -74,35 +63,26 @@ class App
   end
 
   def remove_vehicle
-    print "Enter the vehicle's ID > "
-    id = gets.chomp
+    id = get_input("Enter the vehicle's ID you want to remove > ")
     store.remove_vehicle(id)
     print "\nVehicle remove from store\n"
   end
 
   def generate_quote
-    puts "If you know the vehicle's ID you want quote press Enter"
+    puts "If you know the vehicle's ID you want to quote press Enter"
     print 'Or write back and list vehicles to get the ID > '
     back = gets.chomp
     return if back == 'back'
 
-    print "Enter the vehicle's ID > "
-    id = gets.chomp
+    id = get_input("Enter the vehicle's ID > ")
     selected_store_vehicle = store.vehicles.select { |store_vehicle| store_vehicle['id'] == id }[0]
     obj_vehicle = selected_store_vehicle['obj_vehicle']
-    print 'Do you want to add extras?(y/n) > '
-    add_extras = gets.chomp
+    add_extras = get_input('Do you want to add extras?(y/n) > ')
     extras = []
     if add_extras == 'y'
-      puts 'Extras:'
-      i = 0
-      Extra.get_prices_extras.each do |extra, price|
-        i += 1
-        puts "#{i}. #{extra}: $#{price}"
-      end
-      print 'Enter numbers of the extras > '
-      arr_num = gets.chomp.split(' ').map(&:to_i)
-      extras = arr_num.map { |num| Extra.get_extras[num - 1] }
+      list_extras
+      arr_num = get_input('Enter numbers of the extras > ').split(' ').map(&:to_i)
+      extras = arr_num.map { |num| Extra::EXTRAS[num - 1] }
     end
     puts "Details:\n\n"
     puts "\tQuote for car: #{selected_store_vehicle['id']}\n\n"

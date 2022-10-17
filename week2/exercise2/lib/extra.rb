@@ -19,14 +19,6 @@ class Extra
     vehicle.extras = extras_with_prices
   end
 
-  def self.get_prices_extras
-    PRICES_EXTRAS
-  end
-
-  def self.get_extras
-    EXTRAS
-  end
-
   private
 
   def get_extras_with_prices(extras)
