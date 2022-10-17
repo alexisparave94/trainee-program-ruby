@@ -41,7 +41,7 @@ class App
 
   def add_vehicle
     type_number = select_vehicle_type
-    type = Vehicle.get_types[type_number - 1]
+    type = Vehicle::TYPES[type_number - 1]
     puts "You are going to add a #{type}"
     puts 'Enter features: '
     brand = get_input('Brand: ')
@@ -82,7 +82,7 @@ class App
     if add_extras == 'y'
       list_extras
       arr_num = get_input('Enter numbers of the extras > ').split(' ').map(&:to_i)
-      extras = arr_num.map { |num| Extra.get_extras[num - 1] }
+      extras = arr_num.map { |num| Extra::EXTRAS[num - 1] }
     end
     puts "Details:\n\n"
     puts "\tQuote for car: #{selected_store_vehicle['id']}\n\n"

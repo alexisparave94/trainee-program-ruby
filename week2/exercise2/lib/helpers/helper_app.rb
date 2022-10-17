@@ -27,7 +27,7 @@ module HelperApp
   def list_extras
     puts 'Extras:'
     i = 0
-    Extra.get_prices_extras.each do |extra, price|
+    Extra::PRICES_EXTRAS.each do |extra, price|
       i += 1
       puts "#{i}. #{extra}: $#{price}"
     end
