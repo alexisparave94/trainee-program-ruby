@@ -1,4 +1,6 @@
+# Module for Helpers of app class
 module HelperApp
+  # Method to show the promp of the type of vehicle
   def select_vehicle_type
     puts "\nWhat type of vehicle you want to add?"
     puts '1. Car | 2. Truck'
@@ -6,6 +8,7 @@ module HelperApp
     gets.chomp.to_i
   end
 
+  # Method to ask for an input
   def get_input(prompt)
     input = ''
     while input.empty?
@@ -15,6 +18,7 @@ module HelperApp
     input
   end
 
+  # Method to print main menu
   def print_main_menu
     puts 'Choose the option you want to do'
     puts '1. List vehicles'
@@ -24,6 +28,7 @@ module HelperApp
     puts '5. Exit'
   end
 
+  # Method to list all the extras posible
   def list_extras
     puts 'Extras:'
     i = 0
